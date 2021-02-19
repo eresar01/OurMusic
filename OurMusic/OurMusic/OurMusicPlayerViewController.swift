@@ -15,6 +15,7 @@ class OurMusicPlayerViewController: UIViewController {
     public var mySongs: [Song] = []
 
     var myPlayer: AVAudioPlayer?
+    private var volume: Float = 1.0
     
     @IBOutlet var playingView: UIView!
 
@@ -86,7 +87,7 @@ class OurMusicPlayerViewController: UIViewController {
                 print("player is nil")
                 return
             }
-            player.volume = 0.5
+//            player.volume = 0.5
 
             player.play()
         }
@@ -109,14 +110,18 @@ class OurMusicPlayerViewController: UIViewController {
                                      y: albumImageView.frame.size.height + 30,
                                      width: playingView.frame.size.width-20,
                                      height: 70)
+        songNameLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        songNameLabel.textColor = .black
         albumNameLabel.frame = CGRect(x: 10,
                                      y: albumImageView.frame.size.height + 30 + 60,
                                      width: playingView.frame.size.width-20,
                                      height: 70)
+        albumNameLabel.textColor = .black
         artistNameLabel.frame = CGRect(x: 10,
                                        y: albumImageView.frame.size.height + 30 + 110,
                                        width: playingView.frame.size.width-20,
                                        height: 70)
+        artistNameLabel.textColor = .black
 
         songNameLabel.text = song.name
         albumNameLabel.text = song.albumName
@@ -131,7 +136,7 @@ class OurMusicPlayerViewController: UIViewController {
         let backButton = UIButton()
 
         // Frame
-        let yPosition = playingView.frame.size.height - 60 - 50 - 30
+        let yPosition = playingView.frame.size.height - 120 - 50 - 30
         let size: CGFloat = 70
 
         playPauseButton.frame = CGRect(x: (playingView.frame.size.width - size) / 2.0,
@@ -170,13 +175,16 @@ class OurMusicPlayerViewController: UIViewController {
 
         // slider
         let slider = UISlider(frame: CGRect(x: 20,
-                                            y: playingView.frame.size.height - 60,
+                                            y: playingView.frame.size.height - 120,
                                             width: playingView.frame.size.width - 40,
                                             height: 50))
-        slider.value = 0.5
+        slider.value = volume
         slider.addTarget(self, action: #selector(didSlideSlider(_:)), for: .valueChanged)
         slider.maximumTrackTintColor = .gray
         slider.minimumTrackTintColor = .purple
+        
+        myPlayer?.volume = volume
+        
         playingView.addSubview(slider)
     }
 
@@ -242,6 +250,7 @@ class OurMusicPlayerViewController: UIViewController {
     @objc func didSlideSlider(_ slider: UISlider) {
         let value = slider.value
         myPlayer?.volume = value
+        volume = slider.value
     }
 
     override func viewWillDisappear(_ animated: Bool) {
