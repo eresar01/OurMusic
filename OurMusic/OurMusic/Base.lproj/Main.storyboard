@@ -1,24 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hwg-T8-DFg">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OurMusic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="132" y="115"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XJQ-ME-Mhr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hwg-T8-DFg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hHV-XF-tGf">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="twU-Kf-5a4" kind="relationship" relationship="rootViewController" id="JHB-FC-n2b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyp-zV-Nsr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="-24"/>
+        </scene>
+        <!--SearchVC-->
+        <scene sceneID="7nE-Wg-mt9">
+            <objects>
+                <viewController id="twU-Kf-5a4" customClass="SearchVC" customModule="OurMusic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pz1-0c-IMK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ALj-C6-PVZ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="1IH-4Y-m1N">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="4yH-IM-EZX">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4yH-IM-EZX" firstAttribute="leading" secondItem="1IH-4Y-m1N" secondAttribute="leading" id="A9K-H3-WCM"/>
+                                        <constraint firstAttribute="bottom" secondItem="4yH-IM-EZX" secondAttribute="bottom" constant="8" id="Hmo-VS-jca"/>
+                                        <constraint firstItem="4yH-IM-EZX" firstAttribute="top" secondItem="1IH-4Y-m1N" secondAttribute="top" id="ONF-Vd-wod"/>
+                                        <constraint firstAttribute="height" constant="44" id="psu-QF-h3C"/>
+                                        <constraint firstAttribute="trailing" secondItem="4yH-IM-EZX" secondAttribute="trailing" id="stK-m2-fRL"/>
+                                    </constraints>
+                                </view>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2Bc-5m-JIv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ALj-C6-PVZ" firstAttribute="top" secondItem="2Bc-5m-JIv" secondAttribute="top" id="2Tb-17-jBI"/>
+                            <constraint firstItem="2Bc-5m-JIv" firstAttribute="bottom" secondItem="ALj-C6-PVZ" secondAttribute="bottom" id="QPZ-KI-851"/>
+                            <constraint firstItem="ALj-C6-PVZ" firstAttribute="leading" secondItem="2Bc-5m-JIv" secondAttribute="leading" id="W0k-37-6Ft"/>
+                            <constraint firstItem="2Bc-5m-JIv" firstAttribute="trailing" secondItem="ALj-C6-PVZ" secondAttribute="trailing" id="tUv-u2-prs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="G6t-87-v6u"/>
+                    <connections>
+                        <outlet property="searchBar" destination="4yH-IM-EZX" id="FJH-74-2If"/>
+                        <outlet property="searchTableView" destination="ALj-C6-PVZ" id="P8X-DW-NzC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AI8-6H-7J1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2349.275362318841" y="-24.107142857142858"/>
+        </scene>
+        <!--Search ListVC-->
+        <scene sceneID="tIc-Js-DMp">
+            <objects>
+                <viewController storyboardIdentifier="SearchListVC" id="OQV-qd-Wza" customClass="SearchListVC" customModule="OurMusic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MN0-g6-C8d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="i3X-Sh-YcW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pB8-PJ-S5I"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LpZ-nJ-UIA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3237.68115942029" y="-24.107142857142858"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

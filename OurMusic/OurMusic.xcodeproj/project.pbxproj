@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		465941EB25E3BD7A0057BF0F /* SearchListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465941EA25E3BD7A0057BF0F /* SearchListVC.swift */; };
+		466FC68D25E123FA002837B0 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FC68C25E123FA002837B0 /* SearchVC.swift */; };
+		466FC69D25E1256F002837B0 /* SearchItemCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FC69B25E1256F002837B0 /* SearchItemCVCell.swift */; };
+		466FC69E25E1256F002837B0 /* SearchItemCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466FC69C25E1256F002837B0 /* SearchItemCVCell.xib */; };
+		467A397025E12CAD00A6E466 /* SearchPlayListsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467A396E25E12CAD00A6E466 /* SearchPlayListsTVCell.swift */; };
+		467A397125E12CAD00A6E466 /* SearchPlayListsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467A396F25E12CAD00A6E466 /* SearchPlayListsTVCell.xib */; };
+		467A397625E12CC500A6E466 /* SearchMusicTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467A397425E12CC500A6E466 /* SearchMusicTVCell.swift */; };
+		467A397725E12CC500A6E466 /* SearchMusicTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467A397525E12CC500A6E466 /* SearchMusicTVCell.xib */; };
 		46DDA9E825DC451F00BD0DCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDA9E725DC451F00BD0DCB /* AppDelegate.swift */; };
 		46DDA9EA25DC451F00BD0DCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDA9E925DC451F00BD0DCB /* SceneDelegate.swift */; };
 		46DDA9EC25DC451F00BD0DCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDA9EB25DC451F00BD0DCB /* ViewController.swift */; };
@@ -16,6 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		465941EA25E3BD7A0057BF0F /* SearchListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListVC.swift; sourceTree = "<group>"; };
+		466FC68C25E123FA002837B0 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		466FC69B25E1256F002837B0 /* SearchItemCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCVCell.swift; sourceTree = "<group>"; };
+		466FC69C25E1256F002837B0 /* SearchItemCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchItemCVCell.xib; sourceTree = "<group>"; };
+		467A396E25E12CAD00A6E466 /* SearchPlayListsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayListsTVCell.swift; sourceTree = "<group>"; };
+		467A396F25E12CAD00A6E466 /* SearchPlayListsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPlayListsTVCell.xib; sourceTree = "<group>"; };
+		467A397425E12CC500A6E466 /* SearchMusicTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicTVCell.swift; sourceTree = "<group>"; };
+		467A397525E12CC500A6E466 /* SearchMusicTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMusicTVCell.xib; sourceTree = "<group>"; };
 		46DDA9E425DC451F00BD0DCB /* OurMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OurMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DDA9E725DC451F00BD0DCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DDA9E925DC451F00BD0DCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +53,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		466FC68A25E11815002837B0 /* SearchVC */ = {
+			isa = PBXGroup;
+			children = (
+				466FC68C25E123FA002837B0 /* SearchVC.swift */,
+				465941EA25E3BD7A0057BF0F /* SearchListVC.swift */,
+				467A396B25E12C0300A6E466 /* SearchVCCells */,
+			);
+			path = SearchVC;
+			sourceTree = "<group>";
+		};
+		466FC69A25E1253F002837B0 /* SearchItemCVCell */ = {
+			isa = PBXGroup;
+			children = (
+				466FC69B25E1256F002837B0 /* SearchItemCVCell.swift */,
+				466FC69C25E1256F002837B0 /* SearchItemCVCell.xib */,
+			);
+			path = SearchItemCVCell;
+			sourceTree = "<group>";
+		};
+		467A396B25E12C0300A6E466 /* SearchVCCells */ = {
+			isa = PBXGroup;
+			children = (
+				467A396D25E12C7200A6E466 /* SearchPlayListsTVCell */,
+				467A396C25E12C2E00A6E466 /* SearchMusicTVCell */,
+				466FC69A25E1253F002837B0 /* SearchItemCVCell */,
+			);
+			path = SearchVCCells;
+			sourceTree = "<group>";
+		};
+		467A396C25E12C2E00A6E466 /* SearchMusicTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				467A397425E12CC500A6E466 /* SearchMusicTVCell.swift */,
+				467A397525E12CC500A6E466 /* SearchMusicTVCell.xib */,
+			);
+			path = SearchMusicTVCell;
+			sourceTree = "<group>";
+		};
+		467A396D25E12C7200A6E466 /* SearchPlayListsTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				467A396E25E12CAD00A6E466 /* SearchPlayListsTVCell.swift */,
+				467A396F25E12CAD00A6E466 /* SearchPlayListsTVCell.xib */,
+			);
+			path = SearchPlayListsTVCell;
+			sourceTree = "<group>";
+		};
 		46DDA9DB25DC451F00BD0DCB = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +119,7 @@
 		46DDA9E625DC451F00BD0DCB /* OurMusic */ = {
 			isa = PBXGroup;
 			children = (
+				466FC68A25E11815002837B0 /* SearchVC */,
 				46DDA9E725DC451F00BD0DCB /* AppDelegate.swift */,
 				46DDA9E925DC451F00BD0DCB /* SceneDelegate.swift */,
 				46DDA9EB25DC451F00BD0DCB /* ViewController.swift */,
@@ -124,9 +188,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				466FC69E25E1256F002837B0 /* SearchItemCVCell.xib in Resources */,
 				46DDA9F425DC452700BD0DCB /* LaunchScreen.storyboard in Resources */,
 				46DDA9F125DC452700BD0DCB /* Assets.xcassets in Resources */,
+				467A397725E12CC500A6E466 /* SearchMusicTVCell.xib in Resources */,
 				46DDA9EF25DC451F00BD0DCB /* Main.storyboard in Resources */,
+				467A397125E12CAD00A6E466 /* SearchPlayListsTVCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +204,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				465941EB25E3BD7A0057BF0F /* SearchListVC.swift in Sources */,
+				466FC68D25E123FA002837B0 /* SearchVC.swift in Sources */,
 				46DDA9EC25DC451F00BD0DCB /* ViewController.swift in Sources */,
+				466FC69D25E1256F002837B0 /* SearchItemCVCell.swift in Sources */,
+				467A397025E12CAD00A6E466 /* SearchPlayListsTVCell.swift in Sources */,
 				46DDA9E825DC451F00BD0DCB /* AppDelegate.swift in Sources */,
+				467A397625E12CC500A6E466 /* SearchMusicTVCell.swift in Sources */,
 				46DDA9EA25DC451F00BD0DCB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
