@@ -13,6 +13,8 @@
 		46DDA9EF25DC451F00BD0DCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DDA9ED25DC451F00BD0DCB /* Main.storyboard */; };
 		46DDA9F125DC452700BD0DCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DDA9F025DC452700BD0DCB /* Assets.xcassets */; };
 		46DDA9F425DC452700BD0DCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DDA9F225DC452700BD0DCB /* LaunchScreen.storyboard */; };
+		5E58FE9925E2B97B00B47DC0 /* tabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58FE9825E2B97B00B47DC0 /* tabBarController.swift */; };
+		5E58FE9D25E2C45E00B47DC0 /* TopPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58FE9C25E2C45E00B47DC0 /* TopPageVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		46DDA9F025DC452700BD0DCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46DDA9F325DC452700BD0DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46DDA9F525DC452700BD0DCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E58FE9825E2B97B00B47DC0 /* tabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarController.swift; sourceTree = "<group>"; };
+		5E58FE9C25E2C45E00B47DC0 /* TopPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPageVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +67,18 @@
 				46DDA9F025DC452700BD0DCB /* Assets.xcassets */,
 				46DDA9F225DC452700BD0DCB /* LaunchScreen.storyboard */,
 				46DDA9F525DC452700BD0DCB /* Info.plist */,
+				5E58FE9725E2B92700B47DC0 /* TopPage */,
 			);
 			path = OurMusic;
+			sourceTree = "<group>";
+		};
+		5E58FE9725E2B92700B47DC0 /* TopPage */ = {
+			isa = PBXGroup;
+			children = (
+				5E58FE9825E2B97B00B47DC0 /* tabBarController.swift */,
+				5E58FE9C25E2C45E00B47DC0 /* TopPageVC.swift */,
+			);
+			path = TopPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +152,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				46DDA9EC25DC451F00BD0DCB /* ViewController.swift in Sources */,
+				5E58FE9925E2B97B00B47DC0 /* tabBarController.swift in Sources */,
 				46DDA9E825DC451F00BD0DCB /* AppDelegate.swift in Sources */,
+				5E58FE9D25E2C45E00B47DC0 /* TopPageVC.swift in Sources */,
 				46DDA9EA25DC451F00BD0DCB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
