@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		465941EB25E3BD7A0057BF0F /* SearchListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465941EA25E3BD7A0057BF0F /* SearchListVC.swift */; };
+		4668300D25E9522F00B72C59 /* CachedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668300B25E9522F00B72C59 /* CachedTVCell.swift */; };
+		4668300E25E9522F00B72C59 /* CachedTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4668300C25E9522F00B72C59 /* CachedTVCell.xib */; };
+		4668301225E96BD900B72C59 /* SearchPlayListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668301125E96BD900B72C59 /* SearchPlayListVC.swift */; };
 		466FC68D25E123FA002837B0 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FC68C25E123FA002837B0 /* SearchVC.swift */; };
 		466FC69D25E1256F002837B0 /* SearchItemCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FC69B25E1256F002837B0 /* SearchItemCVCell.swift */; };
 		466FC69E25E1256F002837B0 /* SearchItemCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466FC69C25E1256F002837B0 /* SearchItemCVCell.xib */; };
@@ -24,7 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		465941EA25E3BD7A0057BF0F /* SearchListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListVC.swift; sourceTree = "<group>"; };
+		4668300B25E9522F00B72C59 /* CachedTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedTVCell.swift; sourceTree = "<group>"; };
+		4668300C25E9522F00B72C59 /* CachedTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CachedTVCell.xib; sourceTree = "<group>"; };
+		4668301125E96BD900B72C59 /* SearchPlayListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayListVC.swift; sourceTree = "<group>"; };
 		466FC68C25E123FA002837B0 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		466FC69B25E1256F002837B0 /* SearchItemCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCVCell.swift; sourceTree = "<group>"; };
 		466FC69C25E1256F002837B0 /* SearchItemCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchItemCVCell.xib; sourceTree = "<group>"; };
@@ -53,11 +57,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4668300A25E951FD00B72C59 /* CachedTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				4668300B25E9522F00B72C59 /* CachedTVCell.swift */,
+				4668300C25E9522F00B72C59 /* CachedTVCell.xib */,
+			);
+			path = CachedTVCell;
+			sourceTree = "<group>";
+		};
 		466FC68A25E11815002837B0 /* SearchVC */ = {
 			isa = PBXGroup;
 			children = (
 				466FC68C25E123FA002837B0 /* SearchVC.swift */,
-				465941EA25E3BD7A0057BF0F /* SearchListVC.swift */,
+				4668301125E96BD900B72C59 /* SearchPlayListVC.swift */,
 				467A396B25E12C0300A6E466 /* SearchVCCells */,
 			);
 			path = SearchVC;
@@ -75,6 +88,7 @@
 		467A396B25E12C0300A6E466 /* SearchVCCells */ = {
 			isa = PBXGroup;
 			children = (
+				4668300A25E951FD00B72C59 /* CachedTVCell */,
 				467A396D25E12C7200A6E466 /* SearchPlayListsTVCell */,
 				467A396C25E12C2E00A6E466 /* SearchMusicTVCell */,
 				466FC69A25E1253F002837B0 /* SearchItemCVCell */,
@@ -190,6 +204,7 @@
 			files = (
 				466FC69E25E1256F002837B0 /* SearchItemCVCell.xib in Resources */,
 				46DDA9F425DC452700BD0DCB /* LaunchScreen.storyboard in Resources */,
+				4668300E25E9522F00B72C59 /* CachedTVCell.xib in Resources */,
 				46DDA9F125DC452700BD0DCB /* Assets.xcassets in Resources */,
 				467A397725E12CC500A6E466 /* SearchMusicTVCell.xib in Resources */,
 				46DDA9EF25DC451F00BD0DCB /* Main.storyboard in Resources */,
@@ -204,7 +219,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				465941EB25E3BD7A0057BF0F /* SearchListVC.swift in Sources */,
+				4668301225E96BD900B72C59 /* SearchPlayListVC.swift in Sources */,
+				4668300D25E9522F00B72C59 /* CachedTVCell.swift in Sources */,
 				466FC68D25E123FA002837B0 /* SearchVC.swift in Sources */,
 				46DDA9EC25DC451F00BD0DCB /* ViewController.swift in Sources */,
 				466FC69D25E1256F002837B0 /* SearchItemCVCell.swift in Sources */,

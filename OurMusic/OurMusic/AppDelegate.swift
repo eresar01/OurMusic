@@ -10,8 +10,6 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
@@ -23,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().compactAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
-            //UINavigationBar.appearance().prefersLargeTitles = true
+            UINavigationBar.appearance().prefersLargeTitles = true
             
         } else {
             UINavigationBar.appearance().tintColor = .white

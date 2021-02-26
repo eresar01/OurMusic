@@ -10,107 +10,181 @@ import UIKit
 protocol SearchCell: UITableViewCell {
     static var cellId : String { get }
     static var nib : UINib { get }
+    
+    func setup()
+}
+
+enum SearchState : Int {
+    case defoult, isActiv, isHavePlayList
+    var state : Int {
+        switch self {
+        case .defoult:
+            return 0
+        case .isActiv:
+            return 1
+        case .isHavePlayList:
+            return 2
+        }
+    }
 }
 
 class SearchVC: UIViewController {
     
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
-    private var isHavePlayList = true
+    
+    var state: SearchState = .defoult
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchTableView.register(SearchMusicTVCell.nib, forCellReuseIdentifier: SearchMusicTVCell.cellId)
         searchTableView.register(SearchPlayListsTVCell.nib, forCellReuseIdentifier: SearchPlayListsTVCell.cellId)
+        searchTableView.register(SearchMusicTVCell.nib, forCellReuseIdentifier: SearchMusicTVCell.cellId)
+        searchTableView.register(CachedTVCell.nib, forCellReuseIdentifier: CachedTVCell.cellId)
         searchTableView.dataSource = self
         searchTableView.delegate = self
-        searchBar.delegate = self
-        view.backgroundColor = .black
         searchTableView.backgroundColor = .black
+        self.view.backgroundColor = .black
+        searchControllerSetup()
     }
     
+// MARK: Dzevapoxel
+    func searchControllerSetup() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        let scb = searchController.searchBar
+        scb.tintColor = UIColor.white
+        scb.barTintColor = UIColor.white
+        
+        
+        if let textfield = scb.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = UIColor.blue
+            if let backgroundview = textfield.subviews.first {
+                print("backgroundview")
+                // Background color
+                backgroundview.backgroundColor = UIColor.white
+                
+                // Rounded corner
+                backgroundview.layer.cornerRadius = backgroundview.frame.width / 2;
+                backgroundview.clipsToBounds = true;
+                
+            }
+        }
+        
+        if let navigationbar = self.navigationController?.navigationBar {
+            navigationbar.barTintColor = UIColor.blue
+        }
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
 }
 // MARK: UITableViewDataSource
 extension SearchVC : UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return isHavePlayList ? 2 : 1
+        switch state {
+            case .defoult:
+                return 2
+            case .isActiv:
+                return 1
+            case .isHavePlayList:
+                return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isHavePlayList {
-            switch section {
-            case 0:
-                return 1
-            case 1:
+        
+        switch state {
+            case .defoult:
+                if section == 0 {
+                    return 1
+                }
                 return 20
-            default:
-                return 0
-            }
-        } else {
-            return 20
+            case .isActiv:
+                return 20
+            case .isHavePlayList:
+                return 20
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isHavePlayList {
-            switch indexPath.section {
-            case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SearchPlayListsTVCell.cellId, for: indexPath) as! SearchPlayListsTVCell
-                return cell
-            case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SearchMusicTVCell.cellId, for: indexPath) as! SearchMusicTVCell
-                return cell
-            default:
-                return UITableViewCell()
+        var cell: SearchCell
+        switch state {
+            case .defoult:
+                if indexPath.section == 0 {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: SearchPlayListsTVCell.cellId, for: indexPath) as! SearchPlayListsTVCell
+                    cell.delegate = self
+                    return cell
+                }
+                cell = tableView.dequeueReusableCell(withIdentifier: SearchMusicTVCell.cellId, for: indexPath) as! SearchMusicTVCell
+            
+            case .isActiv:
+                cell = tableView.dequeueReusableCell(withIdentifier: CachedTVCell.cellId, for: indexPath) as! CachedTVCell
+            
+            case .isHavePlayList:
+                cell = tableView.dequeueReusableCell(withIdentifier: SearchMusicTVCell.cellId, for: indexPath) as! SearchMusicTVCell
             }
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: SearchMusicTVCell.cellId, for: indexPath) as! SearchMusicTVCell
             return cell
         }
     }
-}
 // MARK: UITableViewDelegate
 extension SearchVC : UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if isHavePlayList {
-            switch indexPath.section {
-            case 0:
-                return 200
-            case 1:
+        switch state {
+            case .defoult:
+                if indexPath.section == 0 {
+                    return 200
+                }
                 return 80
-            default:
-                return 0
+            case .isActiv:
+                return 60
+            case .isHavePlayList:
+                return 80
             }
-        }else {
-            return 80
-        }
-        
     }
 }
-extension SearchVC : UISearchBarDelegate {
+// MARK: UISearchControllerDelegate
+extension SearchVC: UISearchControllerDelegate ,UISearchResultsUpdating  {
     
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        print("searchBarShouldBeginEditing")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextVC = storyboard.instantiateViewController(withIdentifier: "SearchListVC") as! SearchListVC
-        //nextVC.newsData = self.newsData[indexPath.row]
-        self.navigationController?.pushViewController(nextVC, animated: false)
-        return false
+    func updateSearchResults(for searchController: UISearchController) {
+        if let text = searchController.searchBar.text {
+            print(text)
+        }
     }
     
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        print("searchBarTextDidBeginEditing")
-//    }
-//
-//    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-//        print("searchBarShouldEndEditing")
-//        return true
-//    }
-//
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        print("searchBarTextDidEndEditing")
-//
-//    }
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.state = .isActiv
+        animateion(for: self.searchTableView)
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.state = .defoult
+        animateion(for: self.searchTableView)
+    }
+    
+    func animateion(for tableView: UITableView) {
+        tableView.alpha = 0
+        UIView.animate(withDuration: 0.3, animations: {
+            tableView.alpha = 1
+            tableView.reloadData()
+        })
+    }
+}
+extension SearchVC : SearchPlayListsTVCellDelegate {
+    func didSelectItem(at indexPath: IndexPath) {
+        print(indexPath.row)
+        nextVC()
+    }
+    
+    func nextVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextVC = storyboard.instantiateViewController(withIdentifier: "SearchPlayListVC") as! SearchPlayListVC
+        self.navigationController?.navigationItem.title = "Lilit Hovhannisyan"
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
 }

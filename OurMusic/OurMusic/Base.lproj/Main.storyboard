@@ -41,7 +41,7 @@
             </objects>
             <point key="canvasLocation" x="1470" y="-24"/>
         </scene>
-        <!--SearchVC-->
+        <!--Search-->
         <scene sceneID="7nE-Wg-mt9">
             <objects>
                 <viewController id="twU-Kf-5a4" customClass="SearchVC" customModule="OurMusic" customModuleProvider="target" sceneMemberID="viewController">
@@ -52,23 +52,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ALj-C6-PVZ">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="1IH-4Y-m1N">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="4yH-IM-EZX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </searchBar>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="4yH-IM-EZX" firstAttribute="leading" secondItem="1IH-4Y-m1N" secondAttribute="leading" id="A9K-H3-WCM"/>
-                                        <constraint firstAttribute="bottom" secondItem="4yH-IM-EZX" secondAttribute="bottom" constant="8" id="Hmo-VS-jca"/>
-                                        <constraint firstItem="4yH-IM-EZX" firstAttribute="top" secondItem="1IH-4Y-m1N" secondAttribute="top" id="ONF-Vd-wod"/>
-                                        <constraint firstAttribute="height" constant="44" id="psu-QF-h3C"/>
-                                        <constraint firstAttribute="trailing" secondItem="4yH-IM-EZX" secondAttribute="trailing" id="stK-m2-fRL"/>
-                                    </constraints>
-                                </view>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Bc-5m-JIv"/>
@@ -80,9 +63,8 @@
                             <constraint firstItem="2Bc-5m-JIv" firstAttribute="trailing" secondItem="ALj-C6-PVZ" secondAttribute="trailing" id="tUv-u2-prs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="G6t-87-v6u"/>
+                    <navigationItem key="navigationItem" title="Search" id="G6t-87-v6u"/>
                     <connections>
-                        <outlet property="searchBar" destination="4yH-IM-EZX" id="FJH-74-2If"/>
                         <outlet property="searchTableView" destination="ALj-C6-PVZ" id="P8X-DW-NzC"/>
                     </connections>
                 </viewController>
@@ -90,17 +72,32 @@
             </objects>
             <point key="canvasLocation" x="2349.275362318841" y="-24.107142857142858"/>
         </scene>
-        <!--Search ListVC-->
+        <!--Search Play ListVC-->
         <scene sceneID="tIc-Js-DMp">
             <objects>
-                <viewController storyboardIdentifier="SearchListVC" id="OQV-qd-Wza" customClass="SearchListVC" customModule="OurMusic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchPlayListVC" id="OQV-qd-Wza" customClass="SearchPlayListVC" customModule="OurMusic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MN0-g6-C8d">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eVa-iw-5vg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="i3X-Sh-YcW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eVa-iw-5vg" firstAttribute="leading" secondItem="i3X-Sh-YcW" secondAttribute="leading" id="KVo-mr-yIg"/>
+                            <constraint firstItem="eVa-iw-5vg" firstAttribute="top" secondItem="i3X-Sh-YcW" secondAttribute="top" id="LZQ-8F-qZf"/>
+                            <constraint firstItem="i3X-Sh-YcW" firstAttribute="bottom" secondItem="eVa-iw-5vg" secondAttribute="bottom" id="Yvc-h4-l7p"/>
+                            <constraint firstItem="i3X-Sh-YcW" firstAttribute="trailing" secondItem="eVa-iw-5vg" secondAttribute="trailing" id="mQo-Ry-Jmj"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pB8-PJ-S5I"/>
+                    <connections>
+                        <outlet property="playListTV" destination="eVa-iw-5vg" id="OJD-wz-q67"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpZ-nJ-UIA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,6 +9,9 @@ import UIKit
 
 class SearchItemCVCell: UICollectionViewCell {
     
+    @IBOutlet weak var playListImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     static let cellId = "SearchItemCVCell"
     static let nib = UINib(nibName: "SearchItemCVCell", bundle: nil)
     

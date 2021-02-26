@@ -58,6 +58,9 @@
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="0.7843137255" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="aAp-lm-Tww"/>
+                                </connections>
                             </button>
                         </subviews>
                     </stackView>
@@ -72,6 +75,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addButton" destination="QtD-eC-pD9" id="lxu-Gf-T6S"/>
+                <outlet property="musicImage" destination="0Uk-qR-FcP" id="RF6-yo-yQz"/>
+                <outlet property="subTitleLabel" destination="Aw6-ef-cIz" id="DQT-Nv-tip"/>
+                <outlet property="titleLabel" destination="G1J-J7-1se" id="ggQ-lz-lCw"/>
+            </connections>
             <point key="canvasLocation" x="89" y="147"/>
         </tableViewCell>
     </objects>

@@ -43,6 +43,10 @@
                 <constraint firstAttribute="bottom" secondItem="ZUu-4i-h9Z" secondAttribute="bottom" id="wrD-Mb-cPU"/>
             </constraints>
             <size key="customSize" width="113" height="145"/>
+            <connections>
+                <outlet property="playListImage" destination="lRo-zU-sCZ" id="8th-6l-syR"/>
+                <outlet property="titleLabel" destination="ZUu-4i-h9Z" id="zDY-Uv-18b"/>
+            </connections>
             <point key="canvasLocation" x="-428.26086956521743" y="-109.48660714285714"/>
         </collectionViewCell>
     </objects>

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SearchPlayListsTVCellDelegate {
+    func didSelectItem(at indexPath: IndexPath)
+}
+
 class SearchPlayListsTVCell: UITableViewCell, SearchCell {
     
     static var cellId = "SearchPlayListsTVCell"
@@ -14,7 +18,8 @@ class SearchPlayListsTVCell: UITableViewCell, SearchCell {
     
     @IBOutlet weak var playListCV: UICollectionView!
     
-    let conteins : CGFloat = 12
+    var delegate: SearchPlayListsTVCellDelegate?
+    private let conteins : CGFloat = 12
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +35,11 @@ class SearchPlayListsTVCell: UITableViewCell, SearchCell {
         // Configure the view for the selected state
     }
     
+    func setup() {
+        
+    }
 }
+
 //MARK: UICollectionViewDataSource
 extension SearchPlayListsTVCell: UICollectionViewDataSource {
     
@@ -43,9 +52,8 @@ extension SearchPlayListsTVCell: UICollectionViewDataSource {
         
         return cell
     }
-    
-    
 }
+
 //MARK: UICollectionViewDelegate
 extension SearchPlayListsTVCell: UICollectionViewDelegateFlowLayout {
     
@@ -74,5 +82,9 @@ extension SearchPlayListsTVCell: UICollectionViewDelegateFlowLayout {
     // right or left
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return conteins
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectItem(at: indexPath)
     }
 }
