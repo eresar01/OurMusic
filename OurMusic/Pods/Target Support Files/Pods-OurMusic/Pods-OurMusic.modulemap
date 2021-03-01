@@ -1,0 +1,6 @@
+framework module Pods_OurMusic {
+  umbrella header "Pods-OurMusic-umbrella.h"
+
+  export *
+  module * { export * }
+}
