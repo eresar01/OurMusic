@@ -107,6 +107,36 @@
             </objects>
             <point key="canvasLocation" x="2163.768115942029" y="28.794642857142854"/>
         </scene>
+        <!--SearchVC-->
+        <scene sceneID="KJ7-cy-a58">
+            <objects>
+                <viewController id="sP6-jy-1r2" customClass="SearchVC" customModule="OurMusic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Iy-Zt-e4U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="sS1-uk-jX8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lcy-t1-niq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2164" y="867"/>
+        </scene>
+        <!--Search Play ListVC-->
+        <scene sceneID="qbY-FW-efC">
+            <objects>
+                <viewController id="tBP-6D-rA1" customClass="SearchPlayListVC" customModule="OurMusic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="is5-4h-K50">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="uQk-hH-Z6Q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x7i-bM-qYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3174" y="854"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="h92-Rw-nEK">
             <objects>
