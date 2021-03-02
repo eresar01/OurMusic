@@ -18,6 +18,17 @@ class SearchPlayListVC: UIViewController {
         playListTV.delegate = self
         playListTV.backgroundColor = .black
         self.view.backgroundColor = .black
+        self.navigationItem.title = "Lilit Hovhannisyan"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 
 }

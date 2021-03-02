@@ -43,8 +43,19 @@ class SearchVC: UIViewController {
         searchTableView.delegate = self
         searchTableView.backgroundColor = .black
         self.view.backgroundColor = .black
+        self.navigationItem.title = "Search"
         searchControllerSetup()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.navigationController?.navigationBar.prefersLargeTitles = false
+//    }
+//    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+//    }
     
 // MARK: Dzevapoxel
     func searchControllerSetup() {
@@ -184,7 +195,6 @@ extension SearchVC : SearchPlayListsTVCellDelegate {
     func nextVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = storyboard.instantiateViewController(withIdentifier: "SearchPlayListVC") as! SearchPlayListVC
-        self.navigationController?.navigationItem.title = "Lilit Hovhannisyan"
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
