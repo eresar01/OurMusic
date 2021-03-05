@@ -27,9 +27,9 @@ class CachedTVCell: UITableViewCell, SearchCell  {
 
         // Configure the view for the selected state
     }
-    
-    func setup() {
-        
+    func setup(data: Any) {
+        let text = data as! String
+        self.titleLabel.text = text
     }
     
     func setupTintColor(color: UIColor) {

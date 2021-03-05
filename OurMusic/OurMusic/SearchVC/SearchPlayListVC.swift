@@ -10,6 +10,10 @@ import UIKit
 class SearchPlayListVC: UIViewController {
 
     @IBOutlet weak var playListTV: UITableView!
+    private let controller = SearchController()
+    
+    var musiclist = [Track]()
+    var titleList = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +22,7 @@ class SearchPlayListVC: UIViewController {
         playListTV.delegate = self
         playListTV.backgroundColor = .black
         self.view.backgroundColor = .black
-        self.navigationItem.title = "Lilit Hovhannisyan"
+        self.navigationItem.title = titleList
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,11 +39,12 @@ class SearchPlayListVC: UIViewController {
 extension SearchPlayListVC : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return musiclist.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchMusicTVCell.cellId, for: indexPath) as! SearchMusicTVCell
+        cell.setup(data: musiclist[indexPath.row])
         return cell
     }
 }
@@ -51,6 +56,6 @@ extension SearchPlayListVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        controller.playingMusic(musiclist[indexPath.row])
     }
 }

@@ -11,27 +11,18 @@ protocol SearchCell: UITableViewCell {
     static var cellId : String { get }
     static var nib : UINib { get }
     
-    func setup()
-}
-
-enum SearchState : Int {
-    case defoult, isActiv, isHavePlayList
-    var state : Int {
-        switch self {
-        case .defoult:
-            return 0
-        case .isActiv:
-            return 1
-        case .isHavePlayList:
-            return 2
-        }
-    }
+    func setup(data: Any)
 }
 
 class SearchVC: UIViewController {
     
     @IBOutlet weak var searchTableView: UITableView!
     
+    private let controller = SearchController()
+    
+    var searchController: UISearchController!
+    
+    var searchText = ""
     var state: SearchState = .defoult
     
     override func viewDidLoad() {
@@ -42,25 +33,17 @@ class SearchVC: UIViewController {
         searchTableView.dataSource = self
         searchTableView.delegate = self
         searchTableView.backgroundColor = .black
+        
         self.view.backgroundColor = .black
         self.navigationItem.title = "Search"
         searchControllerSetup()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.navigationController?.navigationBar.prefersLargeTitles = false
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-//    }
-    
 // MARK: Dzevapoxel
     func searchControllerSetup() {
-        let searchController = UISearchController(searchResultsController: nil)
+        searchController = UISearchController(searchResultsController: nil)
         searchController.delegate = self
+        searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         let scb = searchController.searchBar
@@ -83,7 +66,7 @@ class SearchVC: UIViewController {
         }
         
         if let navigationbar = self.navigationController?.navigationBar {
-            navigationbar.barTintColor = UIColor.blue
+            navigationbar.barTintColor = UIColor.black
         }
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -104,17 +87,16 @@ extension SearchVC : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch state {
             case .defoult:
-                if section == 0 {
+                if section == 0 && controller.playlistCount != 0 {
                     return 1
                 }
-                return 20
+                return controller.trackCount
             case .isActiv:
-                return 20
+                return controller.lookCount
             case .isHavePlayList:
-                return 20
+                return controller.trackCount
         }
     }
     
@@ -125,15 +107,21 @@ extension SearchVC : UITableViewDataSource {
                 if indexPath.section == 0 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: SearchPlayListsTVCell.cellId, for: indexPath) as! SearchPlayListsTVCell
                     cell.delegate = self
+                    cell.setup(data: controller.playlists)
                     return cell
                 }
                 cell = tableView.dequeueReusableCell(withIdentifier: SearchMusicTVCell.cellId, for: indexPath) as! SearchMusicTVCell
-            
+                let track = controller.track(at: indexPath.row)
+                cell.setup(data: track)
             case .isActiv:
                 cell = tableView.dequeueReusableCell(withIdentifier: CachedTVCell.cellId, for: indexPath) as! CachedTVCell
-            
+                let cacheData = controller.look(at: indexPath.row)
+                cell.setup(data: cacheData)
             case .isHavePlayList:
+                
                 cell = tableView.dequeueReusableCell(withIdentifier: SearchMusicTVCell.cellId, for: indexPath) as! SearchMusicTVCell
+                let track = controller.track(at: indexPath.row)
+                cell.setup(data: track)
             }
             return cell
         }
@@ -142,7 +130,24 @@ extension SearchVC : UITableViewDataSource {
 extension SearchVC : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        switch state {
+            case .defoult:
+                controller.playingMusic(controller.track(at: indexPath.row))
+            case .isActiv:
+                let searchText = controller.look(at: indexPath.row)
+                DispatchQueue.main.async { [self] in
+                    controller.getData(searchText: searchText) { state in
+                        
+                        self.state = state
+                        searchController.isActive = false
+                        searchTableView.reloadData()
+                    }
+                }
+                //DispatchGroup
+            case .isHavePlayList:
+                controller.playingMusic(controller.track(at: indexPath.row))
+        }
+       
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -160,11 +165,23 @@ extension SearchVC : UITableViewDelegate {
     }
 }
 // MARK: UISearchControllerDelegate
-extension SearchVC: UISearchControllerDelegate ,UISearchResultsUpdating  {
+extension SearchVC: UISearchControllerDelegate ,UISearchResultsUpdating, UISearchBarDelegate  {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        DispatchQueue.main.async { [self] in
+            controller.getData(searchText: searchText) { state in
+                self.state = state
+                searchController.isActive = false
+                searchTableView.reloadData()
+            }
+        }
+        controller.looks.append(self.searchText)
+        dismissKeyboard()
+    }
     
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
-            print(text)
+            self.searchText = text.replacingOccurrences(of: " ", with: "_")
         }
     }
     
@@ -174,7 +191,7 @@ extension SearchVC: UISearchControllerDelegate ,UISearchResultsUpdating  {
     }
     
     func willDismissSearchController(_ searchController: UISearchController) {
-        self.state = .defoult
+        self.state = controller.state
         animateion(for: self.searchTableView)
     }
     
@@ -186,15 +203,19 @@ extension SearchVC: UISearchControllerDelegate ,UISearchResultsUpdating  {
         })
     }
 }
+
 extension SearchVC : SearchPlayListsTVCellDelegate {
     func didSelectItem(at indexPath: IndexPath) {
         print(indexPath.row)
-        nextVC()
+        nextVC(index: indexPath.row)
     }
     
-    func nextVC() {
+    func nextVC(index: Int) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = storyboard.instantiateViewController(withIdentifier: "SearchPlayListVC") as! SearchPlayListVC
+        nextVC.musiclist = controller.playlist(at: index).tracks//playlistData[index].tracks
+        nextVC.titleList = controller.playlist(at: index).title
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
+

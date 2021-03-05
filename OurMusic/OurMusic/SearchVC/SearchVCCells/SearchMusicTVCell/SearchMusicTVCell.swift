@@ -28,8 +28,16 @@ class SearchMusicTVCell: UITableViewCell, SearchCell {
         // Configure the view for the selected state
     }
     
-    func setup() {
-        
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        musicImage.image = nil
+    }
+    
+    func setup(data: Any) {
+        let track = data as! Track
+        self.titleLabel.text = track.title
+        guard let url = track.artwork_url else { return }
+        self.musicImage.showImage(url: url)
     }
     
     @IBAction func addButton(_ sender: Any) {

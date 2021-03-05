@@ -19,5 +19,22 @@ class SearchItemCVCell: UICollectionViewCell {
         super.awakeFromNib()
         //self.contentView.backgroundColor = .black
     }
-
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        playListImage.image = nil
+    }
+    
+    func setup(playlist : Playlist) {
+        self.titleLabel.text = playlist.title
+        if let url = playlist.artwork_url {
+            self.playListImage.showImage(url: url)
+        } else if !playlist.tracks.isEmpty  {
+            guard let url = playlist.tracks[0].artwork_url else { return }
+           // let url = playlist.tracks[0].artwork_url
+            self.playListImage.showImage(url: url)
+        }
+       
+    }
+    
 }

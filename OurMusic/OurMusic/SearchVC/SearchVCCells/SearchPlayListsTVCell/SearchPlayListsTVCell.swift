@@ -18,6 +18,12 @@ class SearchPlayListsTVCell: UITableViewCell, SearchCell {
     
     @IBOutlet weak var playListCV: UICollectionView!
     
+    var playlistData : [Playlist] = [] {
+        didSet {
+            playListCV.reloadData()
+        }
+    }
+    
     var delegate: SearchPlayListsTVCellDelegate?
     private let conteins : CGFloat = 12
     
@@ -34,9 +40,9 @@ class SearchPlayListsTVCell: UITableViewCell, SearchCell {
 
         // Configure the view for the selected state
     }
-    
-    func setup() {
-        
+    func setup(data: Any) {
+        guard let data = data as? [Playlist] else { return }
+        self.playlistData = data
     }
 }
 
@@ -44,12 +50,13 @@ class SearchPlayListsTVCell: UITableViewCell, SearchCell {
 extension SearchPlayListsTVCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return playlistData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchItemCVCell.cellId, for: indexPath) as! SearchItemCVCell
-        
+        let list = playlistData[indexPath.row]
+        cell.setup(playlist: list)
         return cell
     }
 }
